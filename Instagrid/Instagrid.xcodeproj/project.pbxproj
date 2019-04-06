@@ -45,6 +45,7 @@
 				F6C5529B2255574F002FA73B /* AppDelegate.swift */,
 				F60D42572256523A00C4DE65 /* ThirstySoftRegular.otf */,
 				F60D42552256520D00C4DE65 /* Delm-Medium.otf */,
+				F6C552A42255574F002FA73B /* LaunchScreen.storyboard */,
 				F6C552A22255574F002FA73B /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
@@ -60,7 +61,6 @@
 		F60D42532256513D00C4DE65 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F6C552A42255574F002FA73B /* LaunchScreen.storyboard */,
 				F6C5529F2255574F002FA73B /* Main.storyboard */,
 			);
 			path = View;
