@@ -8,6 +8,6 @@
 
 import Foundation
 
-class MainGrid {
+class MainLayout {
     
 }
