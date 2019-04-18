@@ -10,6 +10,7 @@
 		F60D42562256520D00C4DE65 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F60D42552256520D00C4DE65 /* Delm-Medium.otf */; };
 		F60D42582256523A00C4DE65 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F60D42572256523A00C4DE65 /* ThirstySoftRegular.otf */; };
 		F60D425A225891E500C4DE65 /* MainLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60D4259225891E400C4DE65 /* MainLayout.swift */; };
+		F6130622225D050C00875662 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6130621225D050C00875662 /* ImagePicker.swift */; };
 		F6C5529C2255574F002FA73B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C5529B2255574F002FA73B /* AppDelegate.swift */; };
 		F6C5529E2255574F002FA73B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C5529D2255574F002FA73B /* ViewController.swift */; };
 		F6C552A12255574F002FA73B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6C5529F2255574F002FA73B /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 		F60D42552256520D00C4DE65 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 		F60D42572256523A00C4DE65 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		F60D4259225891E400C4DE65 /* MainLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLayout.swift; sourceTree = "<group>"; };
+		F6130621225D050C00875662 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F6C552982255574F002FA73B /* Instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C5529B2255574F002FA73B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6C5529D2255574F002FA73B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		F60D42522256512200C4DE65 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F6130621225D050C00875662 /* ImagePicker.swift */,
 				F60D4259225891E400C4DE65 /* MainLayout.swift */,
 			);
 			path = Model;
@@ -179,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6130622225D050C00875662 /* ImagePicker.swift in Sources */,
 				F6C5529E2255574F002FA73B /* ViewController.swift in Sources */,
 				F60D425A225891E500C4DE65 /* MainLayout.swift in Sources */,
 				F6C5529C2255574F002FA73B /* AppDelegate.swift in Sources */,
