@@ -125,7 +125,9 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.topLeftImageView.image = image
-            
+            self.topRightImageView.image = image
+            self.bottomLeftImageView.image = image
+            self.bottomRightImageView.image = image
         }
         dismiss(animated: true)
     }
