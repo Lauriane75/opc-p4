@@ -137,14 +137,13 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bay-ah-6TS">
                                                         <rect key="frame" x="0.0" y="0.0" width="196" height="196"/>
                                                         <connections>
-                                                            <action selector="addPhotoTop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hyd-mh-MyZ"/>
-                                                            <action selector="addPhotoTopRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8vP-Od-qg5"/>
+                                                            <action selector="addPhotoTopRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H2C-u2-9es"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="addPhotoPlus" translatesAutoresizingMaskIntoConstraints="NO" id="EEg-hr-Puj">
                                                         <rect key="frame" x="0.0" y="0.0" width="196" height="196"/>
                                                     </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="UuF-0h-FPm">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="UuF-0h-FPm" userLabel="Top right Image View">
                                                         <rect key="frame" x="0.0" y="0.0" width="196" height="196"/>
                                                     </imageView>
                                                 </subviews>
