@@ -212,7 +212,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="196" height="196"/>
                                                         <connections>
                                                             <action selector="addPhotoBottom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nzn-jG-lWy"/>
-                                                            <action selector="addPhotoBottomRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kfj-5w-4Wf"/>
+                                                            <action selector="addPhotoBottomRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pl4-kl-yJs"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="addPhotoPlus" translatesAutoresizingMaskIntoConstraints="NO" id="aFW-O6-rZI">
@@ -326,9 +326,9 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="bottomImageView" destination="ag6-BF-jms" id="tdf-h3-0x1"/>
+                        <outlet property="bottomImageView" destination="ag6-BF-jms" id="2aq-j5-WBp"/>
                         <outlet property="bottomLeftImageView" destination="RRt-Qw-95G" id="8yR-y6-bvc"/>
-                        <outlet property="bottomRightImageView" destination="ag6-BF-jms" id="2ne-GD-SBV"/>
+                        <outlet property="bottomRightImageView" destination="ag6-BF-jms" id="Lfq-hq-tgb"/>
                         <outlet property="topImageView" destination="UuF-0h-FPm" id="HEG-jb-tin"/>
                         <outlet property="topLeftImageView" destination="kdG-N1-F01" id="fcK-Ys-pgz"/>
                         <outlet property="topRightImageView" destination="UuF-0h-FPm" id="dth-nR-iXL"/>

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var topRightImageView: UIImageView!
     @IBOutlet weak var bottomLeftImageView: UIImageView!
     @IBOutlet weak var bottomRightImageView: UIImageView!
-// Top & Bottom
+    // Top & Bottom
     @IBOutlet weak var topImageView: UIImageView!
     @IBOutlet weak var bottomImageView: UIImageView!
     
@@ -24,6 +24,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
+    }
+    
+    @objc func handleGesture() {
+        print("swipe up")
+        // Vérifier que les x photos ont une image
+        let finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
+        let items = [finalImage]
+        let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
+        present(ac, animated: true)
     }
     
     
@@ -36,7 +48,29 @@ class ViewController: UIViewController {
         myPickerController.allowsEditing = true
        
     }
-    //topLeftImageView.image = myButton.imageView!.image
+
+    func mergeImages(topLeftImage: UIImage?, topRightImage: UIImage?,
+                     bottomLeftImage: UIImage?, bottomRightImage: UIImage?) -> UIImage? {
+        let width = CGFloat(topLeftImage?.size.width ?? 0) + CGFloat(topRightImage?.size.width ?? 0)
+        let height = CGFloat(topLeftImage?.size.height ?? 0) + CGFloat(bottomLeftImage?.size.height ?? 0)
+        let size = CGSize(width: width, height: height)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        
+        topLeftImage?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: topLeftImage?.size.height ?? 0))
+        
+        topRightImage?.draw(in: CGRect(x: width/2, y:0 , width: width/2, height: topRightImage?.size.height ?? 0))
+        
+        bottomLeftImage?.draw(in: CGRect(x: 0, y: topLeftImage?.size.height ?? 0, width: width/2, height: bottomLeftImage?.size.height ?? 0))
+        
+        bottomRightImage?.draw(in: CGRect(x: width/2, y: topLeftImage?.size.height ?? 0, width: width/2, height: bottomRightImage?.size.height ?? 0))
+        
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    
     
     @IBAction func addPhotoTopLeft(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
