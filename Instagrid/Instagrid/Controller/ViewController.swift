@@ -212,17 +212,56 @@ class ViewController: UIViewController {
             }
         }
     }
+    
     // Top and bottom adding photo in the middle
     @IBAction func addPhotoTop(_ sender: UIButton) {
     }
     @IBAction func addPhotoBottom(_ sender: UIButton) {
     }
     
-    //Selected Layout (1, 2 or 3)
-    
-    @IBAction func selectedLayout1(_ sender: UIButton) {
+    //Layout
+    @IBOutlet weak var Layout1: UIImageView!
+    @IBOutlet weak var Layout2: UIImageView!
+    @IBOutlet weak var Layout3: UIImageView!
+    //Selected
+    @IBOutlet weak var Selected1: UIImageView!
+    @IBOutlet weak var Selected2: UIImageView!
+    @IBOutlet weak var Selected3: UIImageView!
+    //Buttons
+    @IBAction func Button1(_ sender: UIButton) {
+        Selected1 .isHidden = false
+        Selected2 .isHidden = true
+        Selected3 .isHidden = true
+        
+        topLeftImageView .isHidden = true
+        topRightImageView .isHidden = false
+        bottomLeftImageView .isHidden = false
+        bottomRightImageView .isHidden = false
+        
     }
+    @IBAction func Button2(_ sender: UIButton) {
+        Selected1 .isHidden = true
+        Selected2 .isHidden = false
+        Selected3 .isHidden = true
+        
+        topLeftImageView .isHidden = false
+        topRightImageView .isHidden = false
+        bottomLeftImageView .isHidden = true
+        bottomRightImageView .isHidden = false
+        
+    }
+    @IBAction func Button3(_ sender: UIButton) {
+        Selected1 .isHidden = true
+        Selected2 .isHidden = true
+        Selected3 .isHidden = false
+        
+        topLeftImageView .isHidden = false
+        topRightImageView .isHidden = false
+        bottomLeftImageView .isHidden = false
+        bottomRightImageView .isHidden = false
     
+    }
+
 }
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
