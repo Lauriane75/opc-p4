@@ -21,6 +21,11 @@ class ViewController: UIViewController {
     
     private var lastImageViewTapped: UIImageView?
 
+    @IBOutlet weak var topLeftView: UIView!
+    
+    @IBOutlet weak var topRightView: UIView!
+    @IBOutlet weak var bottomLeftView: UIView!
+    @IBOutlet weak var bottomRightView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,25 +54,44 @@ class ViewController: UIViewController {
        
     }
 
+// To merge the final image for save it then
     func mergeImages(topLeftImage: UIImage?, topRightImage: UIImage?,
                      bottomLeftImage: UIImage?, bottomRightImage: UIImage?) -> UIImage? {
         let width = CGFloat(topLeftImage?.size.width ?? 0) + CGFloat(topRightImage?.size.width ?? 0)
         let height = CGFloat(topLeftImage?.size.height ?? 0) + CGFloat(bottomLeftImage?.size.height ?? 0)
         let size = CGSize(width: width, height: height)
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        
-        topLeftImage?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: topLeftImage?.size.height ?? 0))
-        
-        topRightImage?.draw(in: CGRect(x: width/2, y:0 , width: width/2, height: topRightImage?.size.height ?? 0))
-        
-        bottomLeftImage?.draw(in: CGRect(x: 0, y: topLeftImage?.size.height ?? 0, width: width/2, height: bottomLeftImage?.size.height ?? 0))
-        
-        bottomRightImage?.draw(in: CGRect(x: width/2, y: topLeftImage?.size.height ?? 0, width: width/2, height: bottomRightImage?.size.height ?? 0))
+ // To declare which image has to be drawing
+        // Case Selected1
+        var topWidthImage = CGFloat(0)
+        var topImage = CGFloat(width/2)
+        if topLeftView.isHidden {
+            topWidthImage = width
+            topImage = 0
+        } else {
+            topWidthImage = width/2
+            topLeftImage?.draw(in: CGRect(x: 0, y: 0, width: topWidthImage, height: topLeftImage?.size.height ?? 0))
+        }
+        topRightImage?.draw(in: CGRect(x: topImage, y:0, width: topWidthImage, height: topRightImage?.size.height ?? 0))
+        // Case Selected2
+        var bottomWidthImage = CGFloat(0)
+        var bottomImage = CGFloat(width/2)
+        if bottomLeftView.isHidden {
+            bottomWidthImage = width
+            bottomImage = 0
+        } else {
+            bottomWidthImage = width/2
+            bottomLeftImage?.draw(in: CGRect(x: 0, y: bottomLeftImage?.size.height ?? 0, width: bottomWidthImage, height: bottomLeftImage?.size.height ?? 0))
+        }
+        bottomRightImage?.draw(in: CGRect(x: bottomImage, y:bottomRightImage?.size.height ?? 0, width: bottomWidthImage, height: bottomRightImage?.size.height ?? 0))
         
         let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         return newImage
+    }
+    
+    func checkImage() {
     }
     
     
@@ -229,36 +253,36 @@ class ViewController: UIViewController {
     @IBOutlet weak var Selected3: UIImageView!
     //Buttons
     @IBAction func Button1(_ sender: UIButton) {
-        Selected1 .isHidden = false
-        Selected2 .isHidden = true
-        Selected3 .isHidden = true
+        Selected1.isHidden = false
+        Selected2.isHidden = true
+        Selected3.isHidden = true
         
-        topLeftImageView .isHidden = true
-        topRightImageView .isHidden = false
-        bottomLeftImageView .isHidden = false
-        bottomRightImageView .isHidden = false
+        topLeftView.isHidden = true
+        topRightView.isHidden = false
+        bottomLeftView.isHidden = false
+        bottomRightView.isHidden = false
         
     }
     @IBAction func Button2(_ sender: UIButton) {
-        Selected1 .isHidden = true
-        Selected2 .isHidden = false
-        Selected3 .isHidden = true
+        Selected1.isHidden = true
+        Selected2.isHidden = false
+        Selected3.isHidden = true
         
-        topLeftImageView .isHidden = false
-        topRightImageView .isHidden = false
-        bottomLeftImageView .isHidden = true
-        bottomRightImageView .isHidden = false
+        topLeftView.isHidden = false
+        topRightView.isHidden = false
+        bottomLeftView.isHidden = true
+        bottomRightView.isHidden = false
         
     }
     @IBAction func Button3(_ sender: UIButton) {
-        Selected1 .isHidden = true
-        Selected2 .isHidden = true
-        Selected3 .isHidden = false
+        Selected1.isHidden = true
+        Selected2.isHidden = true
+        Selected3.isHidden = false
         
-        topLeftImageView .isHidden = false
-        topRightImageView .isHidden = false
-        bottomLeftImageView .isHidden = false
-        bottomRightImageView .isHidden = false
+        topLeftView.isHidden = false
+        topRightView.isHidden = false
+        bottomLeftView.isHidden = false
+        bottomRightView.isHidden = false
     
     }
 
