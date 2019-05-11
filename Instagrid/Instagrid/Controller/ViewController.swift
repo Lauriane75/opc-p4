@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
         present(ac, animated: true)
     }
-    
+
     
     // Button to add photos
     fileprivate func  PhotoPickerController() {
@@ -54,14 +54,14 @@ class ViewController: UIViewController {
        
     }
 
-// To merge the final image for save it then
+    /// To merge the final image for save it then
     func mergeImages(topLeftImage: UIImage?, topRightImage: UIImage?,
                      bottomLeftImage: UIImage?, bottomRightImage: UIImage?) -> UIImage? {
         let width = CGFloat(topLeftImage?.size.width ?? 0) + CGFloat(topRightImage?.size.width ?? 0)
         let height = CGFloat(topLeftImage?.size.height ?? 0) + CGFloat(bottomLeftImage?.size.height ?? 0)
         let size = CGSize(width: width, height: height)
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
- // To declare which image has to be drawing
+        // To declare which image has to be drawing
         // Case Selected1
         var topWidthImage = CGFloat(0)
         var topImage = CGFloat(width/2)
@@ -87,14 +87,8 @@ class ViewController: UIViewController {
         
         let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
         return newImage
     }
-    
-    func checkImage() {
-    }
-    
-    
     
     @IBAction func addPhotoTopLeft(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
