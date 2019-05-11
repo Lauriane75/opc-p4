@@ -18,18 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="instagrid-icon" translatesAutoresizingMaskIntoConstraints="NO" id="UL7-cT-V8D">
-                                <rect key="frame" x="63" y="236" width="289" height="289"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="instagrid-icon" translatesAutoresizingMaskIntoConstraints="NO" id="CJP-ne-oPA">
+                                <rect key="frame" x="62.5" y="297" width="289" height="172"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CJP-ne-oPA" secondAttribute="height" multiplier="289:172" id="cF7-xR-g1w"/>
+                                </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.74030500650405884" green="0.84132564067840576" blue="0.89270251989364624" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23154520988464355" green="0.59072798490524292" blue="0.8073691725730896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="CJP-ne-oPA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="253" id="Huv-dV-Rzb"/>
+                            <constraint firstItem="CJP-ne-oPA" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kJ3-nB-9cJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CJP-ne-oPA" secondAttribute="bottom" constant="393" id="zIA-Zd-BcN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
