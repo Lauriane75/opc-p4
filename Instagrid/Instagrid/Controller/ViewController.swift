@@ -45,6 +45,9 @@ class ViewController: UIViewController {
 
     
     // Button to add photos
+    //=> PhotoLibrary acces and allow editing
+    // Sources : https://www.youtube.com/watch?v=soj3gqW9r4Y
+    // Sources : https://www.youtube.com/watch?v=q_mjLR0-5K8
     fileprivate func  PhotoPickerController() {
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
@@ -90,6 +93,35 @@ class ViewController: UIViewController {
         return newImage
     }
     
+    fileprivate func restrictedCase() {
+        let alert = UIAlertController(title: "Photo library restricted", message: "Photo library acces is restriced and can't be accessed", preferredStyle: .alert)
+        let okAction = UIAlertAction(title : "OK", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
+    }
+    
+    fileprivate func notDeterminedCase(_ status: PHAuthorizationStatus) {
+        if status == PHAuthorizationStatus.authorized{
+            self.PhotoPickerController()
+        }
+    }
+    
+    fileprivate func deniedCase(){
+        let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings if you want to change it", preferredStyle: .alert)
+        let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
+            DispatchQueue.main.async {
+                let url = URL(string: UIApplication.openSettingsURLString)!
+                UIApplication.shared.open(url, options:[:])
+            }
+        }
+        let cancelAction = UIAlertAction(title:"Cancel", style: .cancel)
+        alert.addAction(goToSettings)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true)
+    }
+    
+    
+    
     @IBAction func addPhotoTopLeft(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
             PHPhotoLibrary.requestAuthorization { (status) in
@@ -98,33 +130,17 @@ class ViewController: UIViewController {
                      self.PhotoPickerController()
                     self.lastImageViewTapped = self.topLeftImageView
                 case .notDetermined:
-                    if status == PHAuthorizationStatus.authorized{
-                         self.PhotoPickerController()
-                    }
+                    self.notDeterminedCase(status)
                 case .restricted:
-                    let alert = UIAlertController(title: "Photo library restricted", message: "Photo library acces is restriced and can't be accessed", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title : "OK", style: .default)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true)
+                    self.restrictedCase()
                 case .denied:
-                    let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings  if You want to change it", preferredStyle: .alert)
-                    let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
-                        DispatchQueue.main.async {
-                            let url = URL(string: UIApplication.openSettingsURLString)!
-                            UIApplication.shared.open(url, options:[:])
-                        }
-                    }
-                let cancelAction = UIAlertAction(title:"Cancel", style: .cancel )
-                alert.addAction(goToSettings)
-                alert.addAction(cancelAction)
-                self.present(alert, animated: true)
+                   self.deniedCase()
                 default:break
                     
                 }
             }
         }
     }
-    
 
     @IBAction func addPhotoTopRight(_ sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
@@ -134,26 +150,11 @@ class ViewController: UIViewController {
                     self.PhotoPickerController()
                     self.lastImageViewTapped = self.topRightImageView
                 case .notDetermined:
-                    if status == PHAuthorizationStatus.authorized{
-                        self.PhotoPickerController()
-                    }
+                    self.notDeterminedCase(status)
                 case .restricted:
-                    let alert = UIAlertController(title: "Photo library restricted", message: "Photo library acces is restriced and can't be accessed", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title : "OK", style: .default)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true)
+                    self.restrictedCase()
                 case .denied:
-                    let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings  if You want to change it", preferredStyle: .alert)
-                    let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
-                        DispatchQueue.main.async {
-                            let url = URL(string: UIApplication.openSettingsURLString)!
-                            UIApplication.shared.open(url, options:[:])
-                        }
-                    }
-                    let cancelAction = UIAlertAction(title:"Cancel", style: .cancel )
-                    alert.addAction(goToSettings)
-                    alert.addAction(cancelAction)
-                    self.present(alert, animated: true)
+                    self.deniedCase()
                 default:break
                     
                 }
@@ -170,26 +171,11 @@ class ViewController: UIViewController {
                     self.PhotoPickerController()
                     self.lastImageViewTapped = self.bottomLeftImageView
                 case .notDetermined:
-                    if status == PHAuthorizationStatus.authorized{
-                        self.PhotoPickerController()
-                    }
+                    self.notDeterminedCase(status)
                 case .restricted:
-                    let alert = UIAlertController(title: "Photo library restricted", message: "Photo library acces is restriced and can't be accessed", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title : "OK", style: .default)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true)
+                    self.restrictedCase()
                 case .denied:
-                    let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings  if You want to change it", preferredStyle: .alert)
-                    let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
-                        DispatchQueue.main.async {
-                            let url = URL(string: UIApplication.openSettingsURLString)!
-                            UIApplication.shared.open(url, options:[:])
-                        }
-                    }
-                    let cancelAction = UIAlertAction(title:"Cancel", style: .cancel )
-                    alert.addAction(goToSettings)
-                    alert.addAction(cancelAction)
-                    self.present(alert, animated: true)
+                    self.deniedCase()
                 default:break
                     
                 }
@@ -204,26 +190,11 @@ class ViewController: UIViewController {
                     self.PhotoPickerController()
                     self.lastImageViewTapped = self.bottomRightImageView
                 case .notDetermined:
-                    if status == PHAuthorizationStatus.authorized{
-                        self.PhotoPickerController()
-                    }
+                    self.notDeterminedCase(status)
                 case .restricted:
-                    let alert = UIAlertController(title: "Photo library restricted", message: "Photo library acces is restriced and can't be accessed", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title : "OK", style: .default)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true)
+                    self.restrictedCase()
                 case .denied:
-                    let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings  if You want to change it", preferredStyle: .alert)
-                    let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
-                        DispatchQueue.main.async {
-                            let url = URL(string: UIApplication.openSettingsURLString)!
-                            UIApplication.shared.open(url, options:[:])
-                        }
-                    }
-                    let cancelAction = UIAlertAction(title:"Cancel", style: .cancel )
-                    alert.addAction(goToSettings)
-                    alert.addAction(cancelAction)
-                    self.present(alert, animated: true)
+                    self.deniedCase()
                 default:break
                     
                 }

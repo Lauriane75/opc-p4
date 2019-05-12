@@ -48,5 +48,7 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Use photos to create your grid</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Take photos to create your grid</string>
 </dict>
 </plist>
