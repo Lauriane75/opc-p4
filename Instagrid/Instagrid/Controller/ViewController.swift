@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         self.view.addGestureRecognizer(swipeUp)
     }
     
+    // To save the grid with UIActivityViewController
     @objc func handleGesture() {
         print("swipe up")
         // Vérifier que les x photos ont une image
