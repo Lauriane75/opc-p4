@@ -914,7 +914,7 @@
                                 </variation>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe up to share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOX-nV-Fml">
-                                <rect key="frame" x="50" y="199.5" width="185" height="33.5"/>
+                                <rect key="frame" x="20" y="199.5" width="111" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eOX-nV-Fml" secondAttribute="height" multiplier="185:34" id="CpB-ly-wlj"/>
                                 </constraints>
@@ -922,6 +922,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact">
+                                    <fontDescription key="fontDescription" name="Delm-Medium" family="Delm" pointSize="18"/>
                                     <mask key="constraints">
                                         <exclude reference="CpB-ly-wlj"/>
                                     </mask>
@@ -1018,7 +1019,9 @@
                             <constraint firstItem="9gX-FI-ifQ" firstAttribute="bottom" secondItem="fzl-uH-ItE" secondAttribute="bottom" id="fdN-J5-Aoo"/>
                             <constraint firstItem="9oZ-xp-Dkh" firstAttribute="trailing" secondItem="ufU-ga-Dbh" secondAttribute="trailing" id="fma-f0-q0e"/>
                             <constraint firstItem="9kH-5x-FoY" firstAttribute="leading" secondItem="vSa-vg-GFE" secondAttribute="leading" constant="-9" id="gCv-yY-3FJ"/>
-                            <constraint firstItem="eOX-nV-Fml" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="gQr-48-603"/>
+                            <constraint firstItem="eOX-nV-Fml" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="gQr-48-603">
+                                <variation key="heightClass=compact" constant="20"/>
+                            </constraint>
                             <constraint firstItem="vSa-vg-GFE" firstAttribute="leading" secondItem="6cV-5K-BvG" secondAttribute="leading" id="gVC-Yf-c9o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zcC-zO-QNi" secondAttribute="bottom" constant="30" id="h36-Da-cgp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wfh-mm-mt4" secondAttribute="bottom" constant="27.333333333333371" id="hBW-LH-EDf"/>
