@@ -31,26 +31,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeUp.direction = .up
-        self.view.addGestureRecognizer(swipeUp)
     }
     // Changes orientation screen display
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { context in
             if UIApplication.shared.statusBarOrientation.isPortrait {
                 self.swipeLabel.text = "Swipe up to share"
+                let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
+                swipeUp.direction = .up
+                self.view.addGestureRecognizer(swipeUp)
             } else {
                 self.swipeLabel.text = "Swipe left to share"
+                let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
+                swipeLeft.direction = .left
+                self.view.addGestureRecognizer(swipeLeft)
             }
         })
     }
-
     
     // To save the grid with UIActivityViewController
     @objc func handleGesture() {
         print("swipe up")
-       // check()
         // Vérifier que les x photos ont une image
         let finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
         let items = [finalImage]

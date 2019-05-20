@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,21 +15,20 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="instagrid-icon" translatesAutoresizingMaskIntoConstraints="NO" id="CJP-ne-oPA">
-                                <rect key="frame" x="62.5" y="297" width="289" height="172"/>
+                                <rect key="frame" x="-171" y="45" width="662" height="289"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="CJP-ne-oPA" secondAttribute="height" multiplier="289:172" id="cF7-xR-g1w"/>
+                                    <constraint firstAttribute="width" secondItem="CJP-ne-oPA" secondAttribute="height" multiplier="394:172" id="cF7-xR-g1w"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.23154520988464355" green="0.59072798490524292" blue="0.8073691725730896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="CJP-ne-oPA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="253" id="Huv-dV-Rzb"/>
+                            <constraint firstItem="CJP-ne-oPA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="Huv-dV-Rzb"/>
                             <constraint firstItem="CJP-ne-oPA" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kJ3-nB-9cJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CJP-ne-oPA" secondAttribute="bottom" constant="393" id="zIA-Zd-BcN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
