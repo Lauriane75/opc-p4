@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //Main Layout
     @IBOutlet weak var topLeftImageView: UIImageView!
     @IBOutlet weak var topRightImageView: UIImageView!
@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     // To save the grid with UIActivityViewController
     @objc func handleGesture() {
         print("swipe up")
+       // check()
         // Vérifier que les x photos ont une image
         let finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
         let items = [finalImage]
@@ -44,19 +45,6 @@ class ViewController: UIViewController {
         present(ac, animated: true)
     }
 
-    
-    // Button to add photos
-    //=> PhotoLibrary acces and allow editing
-    // Sources : https://www.youtube.com/watch?v=soj3gqW9r4Y
-    // Sources : https://www.youtube.com/watch?v=q_mjLR0-5K8
-    fileprivate func  PhotoPickerController() {
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self
-        myPickerController.sourceType = .photoLibrary
-        self.present(myPickerController, animated: true)
-        myPickerController.allowsEditing = true
-       
-    }
 
     /// To merge the final image for save it then
     func mergeImages(topLeftImage: UIImage?, topRightImage: UIImage?,
@@ -121,93 +109,183 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    // To pick of media
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let image = info[.editedImage] as? UIImage {
+            self.lastImageViewTapped?.image = image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.lastImageViewTapped?.image = image
+        }
+        dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    // func to add photos
+    //=> PhotoLibrary acces and allow editing
+    // Sources : https://www.youtube.com/watch?v=soj3gqW9r4Y
+    // Sources : https://www.youtube.com/watch?v=q_mjLR0-5K8
+    fileprivate func  PhotoPickerController() {
+        let myPickerController = UIImagePickerController()
+        myPickerController.delegate = self
+        myPickerController.sourceType = .photoLibrary
+        self.present(myPickerController, animated: true)
+        myPickerController.allowsEditing = true
+        
+    }
     
     
-    @IBAction func addPhotoTopLeft(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-            PHPhotoLibrary.requestAuthorization { (status) in
-                switch status {
-                case .authorized:
-                     self.PhotoPickerController()
-                    self.lastImageViewTapped = self.topLeftImageView
-                case .notDetermined:
-                    self.notDeterminedCase(status)
-                case .restricted:
-                    self.restrictedCase()
-                case .denied:
-                   self.deniedCase()
-                default:break
-                    
+    @IBAction func addPhotoTopLeft(_ sender: UIButton) {let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        let actionSheet = UIAlertController(title: "photo source", message: "choose a source", preferredStyle: .actionSheet)
+        // Camera access
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            }else{
+                print ("Camera not available")
+            }
+        }))
+        // Photo Library access
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                PHPhotoLibrary.requestAuthorization { (status) in
+                    switch status {
+                    case .authorized:
+                        self.PhotoPickerController()
+                        self.lastImageViewTapped = self.topLeftImageView
+                    case .notDetermined:
+                        self.notDeterminedCase(status)
+                    case .restricted:
+                        self.restrictedCase()
+                    case .denied:
+                        self.deniedCase()
+                    default:break
+                        
+                    }
                 }
             }
-        }
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        self.present(actionSheet, animated: true, completion: nil)
     }
 
     @IBAction func addPhotoTopRight(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-            PHPhotoLibrary.requestAuthorization { (status) in
-                switch status {
-                case .authorized:
-                    self.PhotoPickerController()
-                    self.lastImageViewTapped = self.topRightImageView
-                case .notDetermined:
-                    self.notDeterminedCase(status)
-                case .restricted:
-                    self.restrictedCase()
-                case .denied:
-                    self.deniedCase()
-                default:break
-                    
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        let actionSheet = UIAlertController(title: "photo source", message: "choose a source", preferredStyle: .actionSheet)
+        // Camera access
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            }else{
+                print ("Camera not available")
+            }
+        }))
+        // Photo Library access
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                PHPhotoLibrary.requestAuthorization { (status) in
+                    switch status {
+                    case .authorized:
+                        self.PhotoPickerController()
+                        self.lastImageViewTapped = self.topRightImageView
+                    case .notDetermined:
+                        self.notDeterminedCase(status)
+                    case .restricted:
+                        self.restrictedCase()
+                    case .denied:
+                        self.deniedCase()
+                    default:break
+                        
+                    }
                 }
             }
-        }
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        self.present(actionSheet, animated: true, completion: nil)
     }
+    
+    @IBAction func addPhotoBottomLeft(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        let actionSheet = UIAlertController(title: "photo source", message: "choose a source", preferredStyle: .actionSheet)
+        // Camera access
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            }else{
+                print ("Camera not available")
+            }
+        }))
+        // Photo Library access
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                PHPhotoLibrary.requestAuthorization { (status) in
+                    switch status {
+                    case .authorized:
+                        self.PhotoPickerController()
+                        self.lastImageViewTapped = self.bottomLeftImageView
+                    case .notDetermined:
+                        self.notDeterminedCase(status)
+                    case .restricted:
+                        self.restrictedCase()
+                    case .denied:
+                        self.deniedCase()
+                    default:break
+                        
+                    }
+                }
+            }
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @IBAction func addPhotoBottomRight(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        let actionSheet = UIAlertController(title: "photo source", message: "choose a source", preferredStyle: .actionSheet)
+        // Camera access
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            }else{
+                print ("Camera not available")
+            }
+        }))
+        // Photo Library access
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                PHPhotoLibrary.requestAuthorization { (status) in
+                    switch status {
+                    case .authorized:
+                        self.PhotoPickerController()
+                        self.lastImageViewTapped = self.bottomRightImageView
+                    case .notDetermined:
+                        self.notDeterminedCase(status)
+                    case .restricted:
+                        self.restrictedCase()
+                    case .denied:
+                        self.deniedCase()
+                    default:break
+                    
+                    }
+                }
+            }
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
     
 
-    @IBAction func addPhotoBottomLeft(_ sender: AnyObject) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-            PHPhotoLibrary.requestAuthorization { (status) in
-                switch status {
-                case .authorized:
-                    self.PhotoPickerController()
-                    self.lastImageViewTapped = self.bottomLeftImageView
-                case .notDetermined:
-                    self.notDeterminedCase(status)
-                case .restricted:
-                    self.restrictedCase()
-                case .denied:
-                    self.deniedCase()
-                default:break
-                    
-                }
-            }
-        }
-    }
-    @IBAction func addPhotoBottomRight(_ sender: UIButton) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-            PHPhotoLibrary.requestAuthorization { (status) in
-                switch status {
-                case .authorized:
-                    self.PhotoPickerController()
-                    self.lastImageViewTapped = self.bottomRightImageView
-                case .notDetermined:
-                    self.notDeterminedCase(status)
-                case .restricted:
-                    self.restrictedCase()
-                case .denied:
-                    self.deniedCase()
-                default:break
-                    
-                }
-            }
-        }
-    }
-    
-    // Top and bottom adding photo in the middle
-    @IBAction func addPhotoTop(_ sender: UIButton) {
-    }
-    @IBAction func addPhotoBottom(_ sender: UIButton) {
-    }
     
     //Layout
     @IBOutlet weak var Layout1: UIImageView!
@@ -217,8 +295,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var Selected1: UIImageView!
     @IBOutlet weak var Selected2: UIImageView!
     @IBOutlet weak var Selected3: UIImageView!
+    
+    
+  
+    enum SelectedCase{
+        case selected1, selected2, selected3
+    }
+    
+    var select : SelectedCase = .selected3 {
+        didSet {
+        }
+    }
+    
+ 
     //Buttons
     @IBAction func Button1(_ sender: UIButton) {
+        select = .selected1
         Selected1.isHidden = false
         Selected2.isHidden = true
         Selected3.isHidden = true
@@ -230,6 +322,7 @@ class ViewController: UIViewController {
         
     }
     @IBAction func Button2(_ sender: UIButton) {
+        select = .selected2
         Selected1.isHidden = true
         Selected2.isHidden = false
         Selected3.isHidden = true
@@ -241,6 +334,7 @@ class ViewController: UIViewController {
         
     }
     @IBAction func Button3(_ sender: UIButton) {
+        select = .selected3
         Selected1.isHidden = true
         Selected2.isHidden = true
         Selected3.isHidden = false
@@ -249,28 +343,9 @@ class ViewController: UIViewController {
         topRightView.isHidden = false
         bottomLeftView.isHidden = false
         bottomRightView.isHidden = false
-    
     }
 
-}
-
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.editedImage] as? UIImage {
-            self.lastImageViewTapped?.image = image
-        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.lastImageViewTapped?.image = image
-        }
-        dismiss(animated: true)
-    }
-    
-  
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true)
-    }
-   
-}
+} // End of class
 
 
 
