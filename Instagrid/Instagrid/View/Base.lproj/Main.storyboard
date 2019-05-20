@@ -1382,6 +1382,7 @@
                         <outlet property="bottomLeftView" destination="bdD-k8-EoU" id="jAf-oo-WH0"/>
                         <outlet property="bottomRightImageView" destination="ag6-BF-jms" id="Lfq-hq-tgb"/>
                         <outlet property="bottomRightView" destination="csd-dy-tio" id="X8J-mf-JgX"/>
+                        <outlet property="swipeLabel" destination="eOX-nV-Fml" id="Lrz-BV-NzP"/>
                         <outlet property="topImageView" destination="UuF-0h-FPm" id="HEG-jb-tin"/>
                         <outlet property="topLeftImageView" destination="kdG-N1-F01" id="fcK-Ys-pgz"/>
                         <outlet property="topLeftView" destination="Tk6-c9-Q0a" id="fA9-XJ-hLD"/>

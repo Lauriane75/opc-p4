@@ -10,7 +10,9 @@ import UIKit
 import Photos
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    //Main Layout
+    // Swipe label
+    @IBOutlet weak var swipeLabel: UILabel!
+    // Main Layout
     @IBOutlet weak var topLeftImageView: UIImageView!
     @IBOutlet weak var topRightImageView: UIImageView!
     @IBOutlet weak var bottomLeftImageView: UIImageView!
@@ -33,6 +35,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         swipeUp.direction = .up
         self.view.addGestureRecognizer(swipeUp)
     }
+    // Changes orientation screen display
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
+            if UIApplication.shared.statusBarOrientation.isPortrait {
+                self.swipeLabel.text = "Swipe up to share"
+            } else {
+                self.swipeLabel.text = "Swipe left to share"
+            }
+        })
+    }
+
     
     // To save the grid with UIActivityViewController
     @objc func handleGesture() {
@@ -44,7 +57,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
         present(ac, animated: true)
     }
-
+    
 
     /// To merge the final image for save it then
     func mergeImages(topLeftImage: UIImage?, topRightImage: UIImage?,
