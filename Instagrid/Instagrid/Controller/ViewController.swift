@@ -63,15 +63,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             
         }
     }
-   
-
     
-    // To save the grid with UIActivityViewController
-    @objc func handleGesture() {
-        // Vérifier que les x photos ont une image
+   
+    // To swipe the verticalStackView
+    fileprivate func swipeAnimation() {
         // swipe up portrait mode animation
         if UIApplication.shared.statusBarOrientation.isPortrait {
-        print("swipe up")
+            print("swipe up")
             let swipePortrait: CGAffineTransform
             swipePortrait = CGAffineTransform(translationX: 0, y: -400)
             UIView.animate(withDuration: 0.4, animations: {
@@ -94,7 +92,41 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
             }
         }
+    }
+    
+    /*
+     func checkImages() {
+     if Button1.isTouchUpInside {
+     self.topRightImageView.image != nil &&
+     self.bottomLeftImageView.image != nil &&
+     self.bottomRightImageView.image != nil } else if {
+     Button2.isTouchUpInside {
+     self.topLeftImageView.image != nil &&
+     self.topRightImageView.image != nil &&
+     self.bottomRightImageView.image != nil { else if {
+     Button3.isTouchUpInside {
+     self.topLeftImageView.image != nil &&
+     self.topRightImageView.image != nil &&
+     self.bottomLeftImageView.image != nil &&
+     self.bottomRightImageView.image != nil } else ...
+     */
+    
+    @objc func handleGesture() {
+        // Vérifier que les x photos ont une image
+        // checkImages()
+        swipeAnimation()
+        // To save the grid with UIActivityViewController
+        // En gros if self.Button1.isTouchUpInside
+        /* if selected1 {
+         var finalImage = mergeImages(topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image) } else if {
+         selected2 {
+         var finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomRightImage: bottomRightImageView.image) } else {
+         var finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image) }
+        */
+            
+        //
         let finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
+        //
         let items = [finalImage]
         let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
         present(ac, animated: true)
@@ -110,7 +142,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let size = CGSize(width: width, height: height)
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         // To declare which image has to be drawing
-        // Case Selected1
         var topWidthImage = CGFloat(0)
         var topImage = CGFloat(width/2)
         if topLeftView.isHidden {
