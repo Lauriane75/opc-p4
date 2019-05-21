@@ -10,6 +10,8 @@ import UIKit
 import Photos
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // Swipe view    
+    @IBOutlet weak var swipeView: UIStackView!
     // Swipe label
     @IBOutlet weak var swipeLabel: UILabel!
     // Main Layout
@@ -34,7 +36,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     // Changes orientation screen display
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { context in
+        coordinator.animate(alongsideTransition: {
+            
+            context in
             if UIApplication.shared.statusBarOrientation.isPortrait {
                 self.swipeLabel.text = "Swipe up to share"
                 let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
@@ -45,14 +49,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
                 swipeLeft.direction = .left
                 self.view.addGestureRecognizer(swipeLeft)
+                }
             }
-        })
+        )}
+    
+    func AnimationDone() {
+        print ("animation done")
+  
     }
+   
+
     
     // To save the grid with UIActivityViewController
     @objc func handleGesture() {
-        print("swipe up")
         // Vérifier que les x photos ont une image
+        // swipe up portrait mode animation
+        if UIApplication.shared.statusBarOrientation.isPortrait {
+        print("swipe up")
+            let swipePortrait: CGAffineTransform
+            swipePortrait = CGAffineTransform(translationX: 0, y: -300)
+            UIView.animate(withDuration: 0.4, animations: {
+                self.swipeView.transform = swipePortrait
+            }) { (success) in
+                if (success) {
+                    self.AnimationDone()
+                }
+            }
+        }
         let finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
         let items = [finalImage]
         let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
@@ -150,6 +173,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+  
     
     @IBAction func addPhotoTopLeft(_ sender: UIButton) {let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
