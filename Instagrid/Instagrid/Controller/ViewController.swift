@@ -109,7 +109,41 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
      self.topRightImageView.image != nil &&
      self.bottomLeftImageView.image != nil &&
      self.bottomRightImageView.image != nil } else ...
-     */
+ 
+    
+    
+    func checkImages() {
+        if self.select == .selected1 {
+            checkTopRightImageView = true
+            
+        }
+    }
+    */
+    
+    // Func to check each image view
+    func checkTopLeftImageView() -> Bool {
+        if topLeftImageView.image != nil {
+        }
+        return true
+    }
+    func checkTopRightImageView() -> Bool {
+        if topRightImageView.image != nil {
+        }
+        return true
+    }
+    func checkBottomLeftImageView() -> Bool {
+        if bottomLeftImageView.image != nil {
+        }
+        return true
+    }
+    func checkBottomRightImageView() -> Bool {
+        if bottomRightImageView.image != nil {
+        }
+        return true
+    }
+    
+    
+    
     
     @objc func handleGesture() {
         // Vérifier que les x photos ont une image
