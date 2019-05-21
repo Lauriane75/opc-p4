@@ -55,7 +55,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func AnimationDone() {
         print ("animation done")
-  
+        let swipeBack: CGAffineTransform
+        swipeBack = CGAffineTransform(translationX: 0, y: 0)
+        UIView.animate(withDuration: 0.6, animations: {
+            self.swipeView.transform = swipeBack
+        }) { (_) in
+            
+        }
     }
    
 
@@ -67,10 +73,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if UIApplication.shared.statusBarOrientation.isPortrait {
         print("swipe up")
             let swipePortrait: CGAffineTransform
-            swipePortrait = CGAffineTransform(translationX: 0, y: -300)
+            swipePortrait = CGAffineTransform(translationX: 0, y: -400)
             UIView.animate(withDuration: 0.4, animations: {
                 self.swipeView.transform = swipePortrait
             }) { (success) in
+                if (success) {
+                    self.AnimationDone()
+                }
+            }
+        } else {
+            // swipe left landscape mode
+            let swipeLandscape: CGAffineTransform
+            swipeLandscape = CGAffineTransform(translationX: -300, y: 0)
+            UIView.animate(withDuration: 0.4, animations: {
+                self.swipeView.transform = swipeLandscape
+            })
+            { (success) in
                 if (success) {
                     self.AnimationDone()
                 }
@@ -80,6 +98,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let items = [finalImage]
         let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
         present(ac, animated: true)
+        
     }
     
 
