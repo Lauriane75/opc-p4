@@ -10,7 +10,15 @@ import UIKit
 
 class ImagePicker {
     var image: UIImage?
+//    select = .selected1
     
     init(image: UIImage? = nil){
+    }
+    
+    func test(imageView: UIImageView) {
+        // Ici faire le traitement de données
+        
+        // if imageView == .select ....
+        
     }
 }

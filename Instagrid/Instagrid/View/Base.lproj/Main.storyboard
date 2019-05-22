@@ -137,7 +137,7 @@
                                     <action selector="Button3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Noy-ab-wO3"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Selected" translatesAutoresizingMaskIntoConstraints="NO" id="hqP-QJ-0T7" userLabel="Selected-3">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Selected" translatesAutoresizingMaskIntoConstraints="NO" id="hqP-QJ-0T7" userLabel="Selected-3">
                                 <rect key="frame" x="424" y="220" width="80" height="80"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6cV-5K-BvG" userLabel="Vertical Stack View">
@@ -1389,6 +1389,7 @@
                         <outlet property="topLeftView" destination="Tk6-c9-Q0a" id="fA9-XJ-hLD"/>
                         <outlet property="topRightImageView" destination="UuF-0h-FPm" id="dth-nR-iXL"/>
                         <outlet property="topRightView" destination="Q4H-1X-cTH" id="6rI-hm-AZq"/>
+                        <outlet property="verticalStackView" destination="6cV-5K-BvG" id="7Ml-k2-D0S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

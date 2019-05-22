@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // Swipe view    
+    // Swipe view
     @IBOutlet weak var swipeView: UIStackView!
     // Swipe label
     @IBOutlet weak var swipeLabel: UILabel!
@@ -22,18 +22,42 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Top & Bottom
     @IBOutlet weak var topImageView: UIImageView!
     @IBOutlet weak var bottomImageView: UIImageView!
-    
-    private var lastImageViewTapped: UIImageView?
-
     @IBOutlet weak var topLeftView: UIView!
     
     @IBOutlet weak var topRightView: UIView!
     @IBOutlet weak var bottomLeftView: UIView!
     @IBOutlet weak var bottomRightView: UIView!
     
+    //Layout
+    @IBOutlet weak var Layout1: UIImageView!
+    @IBOutlet weak var Layout2: UIImageView!
+    @IBOutlet weak var Layout3: UIImageView!
+    //Selected
+    @IBOutlet weak var Selected1: UIImageView!
+    @IBOutlet weak var Selected2: UIImageView!
+    @IBOutlet weak var Selected3: UIImageView!
+    
+    // vertical stack view
+    @IBOutlet weak var verticalStackView: UIStackView!
+    
+    private var lastImageViewTapped: UIImageView?
+//    private let imagePicker = ImagePicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UIApplication.shared.statusBarOrientation.isPortrait {
+            self.swipeLabel.text = "Swipe up to share"
+            let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
+            swipeUp.direction = .up
+            self.view.addGestureRecognizer(swipeUp)
+        } else {
+            self.swipeLabel.text = "Swipe left to share"
+            let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
+            swipeLeft.direction = .left
+            self.view.addGestureRecognizer(swipeLeft)
+        }
     }
+    
     // Changes orientation screen display
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: {
@@ -49,9 +73,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
                 swipeLeft.direction = .left
                 self.view.addGestureRecognizer(swipeLeft)
-                }
             }
-        )}
+        })
+    }
     
     func AnimationDone() {
         print ("animation done")
@@ -59,12 +83,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         swipeBack = CGAffineTransform(translationX: 0, y: 0)
         UIView.animate(withDuration: 0.6, animations: {
             self.swipeView.transform = swipeBack
-        }) { (_) in
-            
+            }) { (_) in
         }
     }
     
-   
+    
     // To swipe the verticalStackView
     fileprivate func swipeAnimation() {
         // swipe up portrait mode animation
@@ -94,109 +117,95 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    /*
-     func checkImages() {
-     if Button1.isTouchUpInside {
-     self.topRightImageView.image != nil &&
-     self.bottomLeftImageView.image != nil &&
-     self.bottomRightImageView.image != nil } else if {
-     Button2.isTouchUpInside {
-     self.topLeftImageView.image != nil &&
-     self.topRightImageView.image != nil &&
-     self.bottomRightImageView.image != nil { else if {
-     Button3.isTouchUpInside {
-     self.topLeftImageView.image != nil &&
-     self.topRightImageView.image != nil &&
-     self.bottomLeftImageView.image != nil &&
-     self.bottomRightImageView.image != nil } else ...
- 
-    
-    
-    func checkImages() {
-        if self.select == .selected1 {
-            checkTopRightImageView = true
-            
-        }
-    }
-    */
+
     
     // Func to check each image view
-    func checkTopLeftImageView() -> Bool {
-        if topLeftImageView.image != nil {
-        }
-        return true
+    func checkSelected1() -> Bool {
+        return topRightImageView.image != nil &&
+            bottomLeftImageView.image != nil &&
+        bottomRightImageView.image != nil
     }
-    func checkTopRightImageView() -> Bool {
-        if topRightImageView.image != nil {
-        }
-        return true
+    func checkSelected2() -> Bool {
+        return topLeftImageView.image != nil && topRightImageView.image != nil &&
+        bottomRightImageView.image != nil
     }
-    func checkBottomLeftImageView() -> Bool {
-        if bottomLeftImageView.image != nil {
-        }
-        return true
-    }
-    func checkBottomRightImageView() -> Bool {
-        if bottomRightImageView.image != nil {
-        }
-        return true
+    func checkSelected3() -> Bool {
+        return topLeftImageView.image != nil && topRightImageView.image != nil &&
+            bottomLeftImageView.image != nil &&
+            bottomRightImageView.image != nil
     }
     
-    
-    
+   // Alert if an image is missing in the grid before saving
+    fileprivate func missingImageAlert() {
+        let imageAlert = UIAlertController(title: "⚠️ You must complete the grid with missing images to share it!", message: "", preferredStyle: .alert)
+        imageAlert.addAction(UIAlertAction(title: "Got it 👍", style: .default))
+        present(imageAlert, animated: true)
+    }
     
     @objc func handleGesture() {
-        // Vérifier que les x photos ont une image
-        // checkImages()
         swipeAnimation()
-        // To save the grid with UIActivityViewController
-        // En gros if self.Button1.isTouchUpInside
-        /* if selected1 {
-         var finalImage = mergeImages(topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image) } else if {
-         selected2 {
-         var finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomRightImage: bottomRightImageView.image) } else {
-         var finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image) }
-        */
-            
-        //
-        let finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
-        //
+        var finalImage: UIImage? = nil
+        
+        switch self.select {
+        case .selected1:
+            if checkSelected1() {
+                finalImage = mergeImages(topLeftImage:topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
+            } else {
+                missingImageAlert()
+                return
+            }
+            break
+        case .selected2:
+            if checkSelected2() {
+                finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomImageView.image, bottomRightImage: bottomRightImageView.image)
+            } else {
+                missingImageAlert()
+                return
+            }
+            break
+        case .selected3:
+            if checkSelected3() {
+                finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
+            } else {
+                missingImageAlert()
+                return
+            }
+            break
+        }
         let items = [finalImage]
         let ac = UIActivityViewController(activityItems: items as [Any], applicationActivities: nil)
         present(ac, animated: true)
-        
     }
     
-
+    
     /// To merge the final image for save it then
     func mergeImages(topLeftImage: UIImage?, topRightImage: UIImage?,
                      bottomLeftImage: UIImage?, bottomRightImage: UIImage?) -> UIImage? {
-        let width = CGFloat(topLeftImage?.size.width ?? 0) + CGFloat(topRightImage?.size.width ?? 0)
-        let height = CGFloat(topLeftImage?.size.height ?? 0) + CGFloat(bottomLeftImage?.size.height ?? 0)
-        let size = CGSize(width: width, height: height)
+        let widthImage = CGFloat(topLeftImage?.size.width ?? 0) + CGFloat(topRightImage?.size.width ?? 0)
+        let heightImage = CGFloat(topLeftImage?.size.height ?? 0) + CGFloat(bottomLeftImage?.size.height ?? 0)
+        let size = CGSize(width: widthImage, height: heightImage)
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        
         // To declare which image has to be drawing
-        var topWidthImage = CGFloat(0)
-        var topImage = CGFloat(width/2)
-        if topLeftView.isHidden {
-            topWidthImage = width
-            topImage = 0
-        } else {
-            topWidthImage = width/2
-            topLeftImage?.draw(in: CGRect(x: 0, y: 0, width: topWidthImage, height: topLeftImage?.size.height ?? 0))
+        var largeImage = CGFloat(0)
+        // To draw images
+        if select == .selected1 {
+            largeImage = widthImage
+            topRightImage?.draw(in: CGRect(x: 0, y: 0, width: largeImage, height: topRightImage?.size.height ?? 0))
+            bottomLeftImage?.draw(in: CGRect(x: 0, y:topRightImage?.size.height ?? 0, width: bottomLeftImage?.size.width ?? 0, height: bottomLeftImage?.size.height ?? 0))
+            bottomRightImage?.draw(in: CGRect(x:bottomLeftImage?.size.width ?? 0, y:topRightImage?.size.height ?? 0, width: bottomRightImage?.size.width ?? 0, height: bottomRightImage?.size.height ?? 0))
+        } else if select == .selected2 {
+            largeImage = widthImage
+            topLeftImage?.draw(in: CGRect(x:0, y: 0, width: topLeftImage?.size.width ?? 0, height: topLeftImage?.size.height ?? 0))
+            topRightImage?.draw(in: CGRect(x:topLeftImage?.size.width ?? 0, y: 0, width:topRightImage?.size.width ?? 0, height: topRightImage?.size.height ?? 0))
+            bottomRightImage?.draw(in: CGRect(x: 0, y:topLeftImage?.size.height ?? 0, width: largeImage, height: bottomRightImage?.size.height ?? 0))
+        } else if select == .selected3 {
+            largeImage = widthImage
+            topLeftImage?.draw(in: CGRect(x:0, y: 0, width: topLeftImage?.size.width ?? 0, height: topLeftImage?.size.height ?? 0))
+            topRightImage?.draw(in: CGRect(x:topLeftImage?.size.width ?? 0, y: 0, width:topRightImage?.size.width ?? 0, height: topRightImage?.size.height ?? 0))
+            bottomLeftImage?.draw(in: CGRect(x: 0, y:topRightImage?.size.height ?? 0, width: bottomLeftImage?.size.width ?? 0, height: bottomLeftImage?.size.height ?? 0))
+            bottomRightImage?.draw(in: CGRect(x:bottomLeftImage?.size.width ?? 0, y:topRightImage?.size.height ?? 0, width: bottomRightImage?.size.width ?? 0, height: bottomRightImage?.size.height ?? 0))
         }
-        topRightImage?.draw(in: CGRect(x: topImage, y:0, width: topWidthImage, height: topRightImage?.size.height ?? 0))
-        // Case Selected2
-        var bottomWidthImage = CGFloat(0)
-        var bottomImage = CGFloat(width/2)
-        if bottomLeftView.isHidden {
-            bottomWidthImage = width
-            bottomImage = 0
-        } else {
-            bottomWidthImage = width/2
-            bottomLeftImage?.draw(in: CGRect(x: 0, y: bottomLeftImage?.size.height ?? 0, width: bottomWidthImage, height: bottomLeftImage?.size.height ?? 0))
-        }
-        bottomRightImage?.draw(in: CGRect(x: bottomImage, y:bottomRightImage?.size.height ?? 0, width: bottomWidthImage, height: bottomRightImage?.size.height ?? 0))
         
         let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
@@ -254,10 +263,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         myPickerController.sourceType = .photoLibrary
         self.present(myPickerController, animated: true)
         myPickerController.allowsEditing = true
-        
     }
     
-  
+    
     
     @IBAction func addPhotoTopLeft(_ sender: UIButton) {let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -294,7 +302,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
         self.present(actionSheet, animated: true, completion: nil)
     }
-
+    
     @IBAction func addPhotoTopRight(_ sender: UIButton) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -397,7 +405,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     case .denied:
                         self.deniedCase()
                     default:break
-                    
+                        
                     }
                 }
             }
@@ -407,29 +415,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
-
     
-    //Layout
-    @IBOutlet weak var Layout1: UIImageView!
-    @IBOutlet weak var Layout2: UIImageView!
-    @IBOutlet weak var Layout3: UIImageView!
-    //Selected
-    @IBOutlet weak var Selected1: UIImageView!
-    @IBOutlet weak var Selected2: UIImageView!
-    @IBOutlet weak var Selected3: UIImageView!
-    
-    
-  
-    enum SelectedCase{
+    enum SelectedCase {
         case selected1, selected2, selected3
     }
     
-    var select : SelectedCase = .selected3 {
+    var select: SelectedCase = .selected3 {
         didSet {
         }
     }
     
- 
+    
     //Buttons
     @IBAction func Button1(_ sender: UIButton) {
         select = .selected1
@@ -466,14 +462,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomLeftView.isHidden = false
         bottomRightView.isHidden = false
     }
-
+    
 } // End of class
-
-
-
-
-
-
-
-
-
