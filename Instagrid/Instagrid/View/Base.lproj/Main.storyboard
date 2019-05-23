@@ -1043,9 +1043,9 @@
                                 </variation>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ke-G0-NeH">
-                                <rect key="frame" x="210" y="15" width="148" height="39"/>
+                                <rect key="frame" x="205.5" y="15" width="157" height="39"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="3ke-G0-NeH" secondAttribute="height" multiplier="118:39" id="4on-N6-4Q9">
+                                    <constraint firstAttribute="width" secondItem="3ke-G0-NeH" secondAttribute="height" multiplier="127:39" id="4on-N6-4Q9">
                                         <variation key="heightClass=compact" constant="30"/>
                                     </constraint>
                                 </constraints>
@@ -1212,10 +1212,12 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="inj-7W-kRD"/>
-                                <exclude reference="6u4-lO-3Yj"/>
-                                <exclude reference="RxZ-rm-78a"/>
-                                <exclude reference="c1j-ks-9W5"/>
-                                <exclude reference="mBY-dN-6kt"/>
+                                <exclude reference="DRU-7C-HGE"/>
+                                <exclude reference="IVJ-om-ItM"/>
+                                <exclude reference="NYb-oc-dGv"/>
+                                <exclude reference="iru-RY-IJB"/>
+                                <exclude reference="jvZ-cx-a2D"/>
+                                <exclude reference="rr1-Za-IEk"/>
                                 <exclude reference="3nR-a0-08x"/>
                                 <exclude reference="5pI-XR-lp2"/>
                                 <exclude reference="JVH-Mr-gNe"/>
@@ -1223,6 +1225,10 @@
                                 <exclude reference="R9f-wC-gJ0"/>
                                 <exclude reference="aaN-Oc-uc2"/>
                                 <exclude reference="jEC-Lf-lXc"/>
+                                <exclude reference="6u4-lO-3Yj"/>
+                                <exclude reference="RxZ-rm-78a"/>
+                                <exclude reference="c1j-ks-9W5"/>
+                                <exclude reference="mBY-dN-6kt"/>
                                 <exclude reference="5Gj-Yi-kxK"/>
                                 <exclude reference="LJ1-3H-qrl"/>
                                 <exclude reference="MYW-K8-7LZ"/>
@@ -1230,12 +1236,6 @@
                                 <exclude reference="SGz-vi-GdZ"/>
                                 <exclude reference="jTd-q2-uKF"/>
                                 <exclude reference="puJ-JL-gX9"/>
-                                <exclude reference="DRU-7C-HGE"/>
-                                <exclude reference="IVJ-om-ItM"/>
-                                <exclude reference="NYb-oc-dGv"/>
-                                <exclude reference="iru-RY-IJB"/>
-                                <exclude reference="jvZ-cx-a2D"/>
-                                <exclude reference="rr1-Za-IEk"/>
                                 <exclude reference="G9I-i0-xhK"/>
                                 <exclude reference="HUW-eO-0ue"/>
                                 <exclude reference="a2G-5D-AnF"/>
@@ -1269,11 +1269,9 @@
                             <mask key="constraints">
                                 <exclude reference="d0O-yq-IdO"/>
                                 <exclude reference="inj-7W-kRD"/>
-                                <include reference="6u4-lO-3Yj"/>
-                                <exclude reference="7au-Km-WBP"/>
-                                <include reference="RxZ-rm-78a"/>
-                                <exclude reference="c1j-ks-9W5"/>
-                                <exclude reference="mBY-dN-6kt"/>
+                                <exclude reference="FQ8-nr-01N"/>
+                                <include reference="IVJ-om-ItM"/>
+                                <include reference="iru-RY-IJB"/>
                                 <include reference="3nR-a0-08x"/>
                                 <include reference="5pI-XR-lp2"/>
                                 <include reference="JVH-Mr-gNe"/>
@@ -1285,6 +1283,11 @@
                                 <include reference="aaN-Oc-uc2"/>
                                 <exclude reference="dfj-Le-8R8"/>
                                 <include reference="jEC-Lf-lXc"/>
+                                <include reference="6u4-lO-3Yj"/>
+                                <exclude reference="7au-Km-WBP"/>
+                                <include reference="RxZ-rm-78a"/>
+                                <exclude reference="c1j-ks-9W5"/>
+                                <exclude reference="mBY-dN-6kt"/>
                                 <exclude reference="5Gj-Yi-kxK"/>
                                 <exclude reference="9Ou-ZM-w9o"/>
                                 <include reference="LJ1-3H-qrl"/>
@@ -1295,9 +1298,6 @@
                                 <exclude reference="dNr-4s-7sC"/>
                                 <exclude reference="jTd-q2-uKF"/>
                                 <exclude reference="puJ-JL-gX9"/>
-                                <exclude reference="FQ8-nr-01N"/>
-                                <include reference="IVJ-om-ItM"/>
-                                <include reference="iru-RY-IJB"/>
                                 <exclude reference="0Fe-4B-bjZ"/>
                                 <include reference="G9I-i0-xhK"/>
                                 <exclude reference="HJZ-or-LwL"/>
@@ -1371,6 +1371,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="Instagrid" destination="3ke-G0-NeH" id="OrH-sf-cax"/>
                         <outlet property="Layout1" destination="ufU-ga-Dbh" id="vLa-i1-qkD"/>
                         <outlet property="Layout2" destination="9oZ-xp-Dkh" id="cPO-uH-7cK"/>
                         <outlet property="Layout3" destination="zcC-zO-QNi" id="1nA-zv-9yo"/>

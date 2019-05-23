@@ -40,11 +40,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // vertical stack view
     @IBOutlet weak var verticalStackView: UIStackView!
     
+    @IBOutlet weak var Instagrid: UILabel!
+    
+    
     private var lastImageViewTapped: UIImageView?
 //    private let imagePicker = ImagePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.animateAppName()
+        
         if UIApplication.shared.statusBarOrientation.isPortrait {
             self.swipeLabel.text = "Swipe up to share"
             let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
@@ -58,17 +63,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.animateAppName()
+    }
+    
+    func animateAppName() {
+        Instagrid.text = ""
+    
+        let appName = "Instagrid"
+        for character in appName {
+            Instagrid.text! += "\(character )"
+            RunLoop.current.run(until : Date()+0.1)
+        }
+    }
+    
+    
+    
     // Changes orientation screen display
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: {
             
             context in
             if UIApplication.shared.statusBarOrientation.isPortrait {
+                self.animateAppName()
                 self.swipeLabel.text = "Swipe up to share"
                 let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
                 swipeUp.direction = .up
                 self.view.addGestureRecognizer(swipeUp)
             } else {
+                self.animateAppName()
                 self.swipeLabel.text = "Swipe left to share"
                 let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
                 swipeLeft.direction = .left
