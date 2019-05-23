@@ -103,12 +103,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func AnimationDone() {
         print ("animation done")
-        let swipeBack: CGAffineTransform
-        swipeBack = CGAffineTransform(translationX: 0, y: 0)
-        UIView.animate(withDuration: 0.6, animations: {
-            self.swipeView.transform = swipeBack
-            }) { (_) in
-        }
+     
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options:[] , animations: {
+        self.swipeView.transform = .identity
+        } , completion: nil )
     }
     
     
