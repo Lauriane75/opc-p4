@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="instagrid-icon" translatesAutoresizingMaskIntoConstraints="NO" id="CJP-ne-oPA">
-                                <rect key="frame" x="303.66666666666669" y="62.666666666666657" width="289.00000000000006" height="289"/>
+                                <rect key="frame" x="440" y="199" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CJP-ne-oPA" secondAttribute="height" multiplier="56:172" id="cF7-xR-g1w">
                                         <variation key="widthClass=compact" constant="1"/>
