@@ -14,42 +14,37 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var swipeView: UIStackView!
     // Swipe label
     @IBOutlet weak var swipeLabel: UILabel!
-    // Main Layout
+    // UIImageView topLeft / topRight / bottomLeft / bottomRight
     @IBOutlet weak var topLeftImageView: UIImageView!
     @IBOutlet weak var topRightImageView: UIImageView!
     @IBOutlet weak var bottomLeftImageView: UIImageView!
     @IBOutlet weak var bottomRightImageView: UIImageView!
-    // Top & Bottom
+    // Top & Bottom large UIImageView
     @IBOutlet weak var topImageView: UIImageView!
     @IBOutlet weak var bottomImageView: UIImageView!
+    // UIView topLeft / topRight / bottomLeft / bottomRight
     @IBOutlet weak var topLeftView: UIView!
-    
     @IBOutlet weak var topRightView: UIView!
     @IBOutlet weak var bottomLeftView: UIView!
     @IBOutlet weak var bottomRightView: UIView!
-    
-    //Layout
+    //Layout 1 / 2 / 3
     @IBOutlet weak var Layout1: UIImageView!
     @IBOutlet weak var Layout2: UIImageView!
     @IBOutlet weak var Layout3: UIImageView!
-    //Selected
+    //Selected 1 / 2 / 3
     @IBOutlet weak var Selected1: UIImageView!
     @IBOutlet weak var Selected2: UIImageView!
     @IBOutlet weak var Selected3: UIImageView!
-    
     // vertical stack view
     @IBOutlet weak var verticalStackView: UIStackView!
-    
     @IBOutlet weak var Instagrid: UILabel!
-    
-    
+
     private var lastImageViewTapped: UIImageView?
 //    private let imagePicker = ImagePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.animateAppName()
-        
         if UIApplication.shared.statusBarOrientation.isPortrait {
             self.swipeLabel.text = "Swipe up to share"
             let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
@@ -70,7 +65,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func animateAppName() {
         Instagrid.text = ""
-    
         let appName = "Instagrid"
         for character in appName {
             Instagrid.text! += "\(character )"
@@ -78,12 +72,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    
-    
     // Changes orientation screen display
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: {
-            
             context in
             if UIApplication.shared.statusBarOrientation.isPortrait {
                 self.animateAppName()
@@ -103,12 +94,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func AnimationDone() {
         print ("animation done")
-     
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options:[] , animations: {
         self.swipeView.transform = .identity
         } , completion: nil )
     }
-    
     
     // To swipe the verticalStackView
     fileprivate func swipeAnimation() {
@@ -138,8 +127,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
     }
-    
-
     
     // Func to check each image view
     func checkSelected1() -> Bool {
@@ -171,7 +158,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         switch self.select {
         case .selected1:
             if checkSelected1() {
-                finalImage = mergeImages(topLeftImage:topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
+                finalImage = mergeImages(topLeftImage:topImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
             } else {
                 missingImageAlert()
                 return
@@ -199,7 +186,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(ac, animated: true)
     }
     
-    
     /// To merge the final image for save it then
     func mergeImages(topLeftImage: UIImage?, topRightImage: UIImage?,
                      bottomLeftImage: UIImage?, bottomRightImage: UIImage?) -> UIImage? {
@@ -207,7 +193,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let heightImage = CGFloat(topLeftImage?.size.height ?? 0) + CGFloat(bottomLeftImage?.size.height ?? 0)
         let size = CGSize(width: widthImage, height: heightImage)
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
-        
         // To declare which image has to be drawing
         var largeImage = CGFloat(0)
         // To draw images
@@ -234,19 +219,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return newImage
     }
     
+    // func in case resticted
     fileprivate func restrictedCase() {
         let alert = UIAlertController(title: "Photo library restricted", message: "Photo library acces is restriced and can't be accessed", preferredStyle: .alert)
         let okAction = UIAlertAction(title : "OK", style: .default)
         alert.addAction(okAction)
         self.present(alert, animated: true)
     }
-    
+    // func in case not determined
     fileprivate func notDeterminedCase(_ status: PHAuthorizationStatus) {
         if status == PHAuthorizationStatus.authorized{
             self.PhotoPickerController()
         }
     }
-    
+    //func in case denied
     fileprivate func deniedCase(){
         let alert = UIAlertController(title: "Photo library denied", message: "Photo library acces was denied and can't be accessed. Please update your settings if you want to change it", preferredStyle: .alert)
         let goToSettings = UIAlertAction(title : "Go to your settings", style: .default) { (action) in
@@ -260,7 +246,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         alert.addAction(cancelAction)
         self.present(alert, animated: true)
     }
-    
     // To pick of media
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.editedImage] as? UIImage {
@@ -286,8 +271,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(myPickerController, animated: true)
         myPickerController.allowsEditing = true
     }
-    
-    
     
     @IBAction func addPhotoTopLeft(_ sender: UIButton) {let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -436,21 +419,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    
-    
     enum SelectedCase {
         case selected1, selected2, selected3
     }
-    
     var select: SelectedCase = .selected3 {
         didSet {
         }
     }
     
-    
-    //Buttons
+    //Buttons for each layout 1 / 2 / 3
     @IBAction func Button1(_ sender: UIButton) {
-        select = .selected1
+        select = .selected1 // Layout1
         Selected1.isHidden = false
         Selected2.isHidden = true
         Selected3.isHidden = true
@@ -462,7 +441,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     @IBAction func Button2(_ sender: UIButton) {
-        select = .selected2
+        select = .selected2 // Layout2
         Selected1.isHidden = true
         Selected2.isHidden = false
         Selected3.isHidden = true
@@ -471,10 +450,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topRightView.isHidden = false
         bottomLeftView.isHidden = true
         bottomRightView.isHidden = false
-        
     }
     @IBAction func Button3(_ sender: UIButton) {
-        select = .selected3
+        select = .selected3 // Layout3
         Selected1.isHidden = true
         Selected2.isHidden = true
         Selected3.isHidden = false
