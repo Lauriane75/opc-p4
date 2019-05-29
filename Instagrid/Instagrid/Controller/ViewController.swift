@@ -87,16 +87,18 @@ let animate = Title()
             }
         })
     }
-    
+/*
     func AnimationDone() {
         print ("animation done")
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options:[] , animations: {
         self.swipeView.transform = .identity
         } , completion: nil )
     }
+*/
     
     // To swipe the verticalStackView
     fileprivate func swipeAnimation() {
+        let animation = Animation()
         // swipe up portrait mode animation
         if UIApplication.shared.statusBarOrientation.isPortrait {
             print("swipe up")
@@ -106,7 +108,7 @@ let animate = Title()
                 self.swipeView.transform = swipePortrait
             }) { (success) in
                 if (success) {
-                    self.AnimationDone()
+                    animation.AnimationDone(vc: self)
                 }
             }
         } else {
@@ -118,7 +120,7 @@ let animate = Title()
             })
             { (success) in
                 if (success) {
-                    self.AnimationDone()
+                    animation.AnimationDone(vc: self)
                 }
             }
         }
@@ -139,14 +141,6 @@ let animate = Title()
             bottomLeftImageView.image != nil &&
             bottomRightImageView.image != nil
     }
-    /*
-   // Alert if an image is missing in the grid before saving
-    fileprivate func missingImageAlert() {
-        let imageAlert = UIAlertController(title: "⚠️ You must complete the grid with missing images to share it!", message: "", preferredStyle: .alert)
-        imageAlert.addAction(UIAlertAction(title: "Got it 👍", style: .default))
-        present(imageAlert, animated: true)
-    }
- */
     
     @objc func handleGesture() {
         let alert = AlertMessage()
