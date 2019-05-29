@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F60D42562256520D00C4DE65 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F60D42552256520D00C4DE65 /* Delm-Medium.otf */; };
 		F60D42582256523A00C4DE65 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F60D42572256523A00C4DE65 /* ThirstySoftRegular.otf */; };
+		F6543D65229D66A300ACC02A /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6543D64229D66A300ACC02A /* Title.swift */; };
+		F67A72FB229E932D007D1C3B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67A72FA229E932D007D1C3B /* ImagePicker.swift */; };
 		F6C5529C2255574F002FA73B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C5529B2255574F002FA73B /* AppDelegate.swift */; };
 		F6C552A12255574F002FA73B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6C5529F2255574F002FA73B /* Main.storyboard */; };
 		F6C552A32255574F002FA73B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6C552A22255574F002FA73B /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		F60D42552256520D00C4DE65 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 		F60D42572256523A00C4DE65 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
+		F6543D64229D66A300ACC02A /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
+		F67A72FA229E932D007D1C3B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F6C552982255574F002FA73B /* Instagrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C5529B2255574F002FA73B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6C5529D2255574F002FA73B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 		F60D42522256512200C4DE65 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F6543D64229D66A300ACC02A /* Title.swift */,
+				F67A72FA229E932D007D1C3B /* ImagePicker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,7 +183,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6D2F43322809ED20049218E /* ViewController.swift in Sources */,
+				F67A72FB229E932D007D1C3B /* ImagePicker.swift in Sources */,
 				F6C5529C2255574F002FA73B /* AppDelegate.swift in Sources */,
+				F6543D65229D66A300ACC02A /* Title.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

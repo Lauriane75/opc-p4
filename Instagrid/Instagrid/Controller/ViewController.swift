@@ -28,23 +28,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomLeftView: UIView!
     @IBOutlet weak var bottomRightView: UIView!
     //Layout 1 / 2 / 3
-    @IBOutlet weak var Layout1: UIImageView!
-    @IBOutlet weak var Layout2: UIImageView!
-    @IBOutlet weak var Layout3: UIImageView!
+    @IBOutlet weak var layout1: UIImageView!
+    @IBOutlet weak var layout2: UIImageView!
+    @IBOutlet weak var layout3: UIImageView!
     //Selected 1 / 2 / 3
-    @IBOutlet weak var Selected1: UIImageView!
-    @IBOutlet weak var Selected2: UIImageView!
-    @IBOutlet weak var Selected3: UIImageView!
+    @IBOutlet weak var selected1: UIImageView!
+    @IBOutlet weak var selected2: UIImageView!
+    @IBOutlet weak var selected3: UIImageView!
     // vertical stack view
     @IBOutlet weak var verticalStackView: UIStackView!
-    @IBOutlet weak var Instagrid: UILabel!
+    @IBOutlet weak var instagridLabel: UILabel!
 
     private var lastImageViewTapped: UIImageView?
-//    private let imagePicker = ImagePicker()
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.animateAppName()
+        let animate = Title()
+        animate.animateAppName(label: self.instagridLabel)
         if UIApplication.shared.statusBarOrientation.isPortrait {
             self.swipeLabel.text = "Swipe up to share"
             let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
@@ -59,31 +62,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let animate = Title()
         super.viewDidAppear(animated)
-        self.animateAppName()
+        animate.animateAppName(label: self.instagridLabel)
     }
     
-    func animateAppName() {
-        Instagrid.text = ""
-        let appName = "Instagrid"
-        for character in appName {
-            Instagrid.text! += "\(character )"
-            RunLoop.current.run(until : Date()+0.1)
-        }
-    }
+    
     
     // Changes orientation screen display
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: {
             context in
+let animate = Title()
             if UIApplication.shared.statusBarOrientation.isPortrait {
-                self.animateAppName()
+                animate.animateAppName(label: self.instagridLabel)
                 self.swipeLabel.text = "Swipe up to share"
                 let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
                 swipeUp.direction = .up
                 self.view.addGestureRecognizer(swipeUp)
             } else {
-                self.animateAppName()
+                animate.animateAppName(label: self.instagridLabel)
                 self.swipeLabel.text = "Swipe left to share"
                 let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleGesture))
                 swipeLeft.direction = .left
@@ -430,9 +428,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //Buttons for each layout 1 / 2 / 3
     @IBAction func Button1(_ sender: UIButton) {
         select = .selected1 // Layout1
-        Selected1.isHidden = false
-        Selected2.isHidden = true
-        Selected3.isHidden = true
+        selected1.isHidden = false
+        selected2.isHidden = true
+        selected3.isHidden = true
         
         topLeftView.isHidden = true
         topRightView.isHidden = false
@@ -442,9 +440,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func Button2(_ sender: UIButton) {
         select = .selected2 // Layout2
-        Selected1.isHidden = true
-        Selected2.isHidden = false
-        Selected3.isHidden = true
+        selected1.isHidden = true
+        selected2.isHidden = false
+        selected3.isHidden = true
         
         topLeftView.isHidden = false
         topRightView.isHidden = false
@@ -453,9 +451,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     @IBAction func Button3(_ sender: UIButton) {
         select = .selected3 // Layout3
-        Selected1.isHidden = true
-        Selected2.isHidden = true
-        Selected3.isHidden = false
+        selected1.isHidden = true
+        selected2.isHidden = true
+        selected3.isHidden = false
         
         topLeftView.isHidden = false
         topRightView.isHidden = false
