@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// Animation swipe back
 class Animation {
     func AnimationDone(vc : ViewController) {
         print ("animation done")

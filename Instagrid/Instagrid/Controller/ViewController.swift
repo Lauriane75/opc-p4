@@ -41,8 +41,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     private var lastImageViewTapped: UIImageView?
 
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         let animate = Title()
@@ -87,14 +85,6 @@ let animate = Title()
             }
         })
     }
-/*
-    func AnimationDone() {
-        print ("animation done")
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options:[] , animations: {
-        self.swipeView.transform = .identity
-        } , completion: nil )
-    }
-*/
     
     // To swipe the verticalStackView
     fileprivate func swipeAnimation() {
@@ -125,7 +115,6 @@ let animate = Title()
             }
         }
     }
- 
     // Func to check each image view
     func checkSelected1() -> Bool {
         return topRightImageView.image != nil &&
@@ -210,7 +199,6 @@ let animate = Title()
         UIGraphicsEndImageContext()
         return newImage
     }
-    
     // func in case resticted
     fileprivate func restrictedCase() {
         let alert = UIAlertController(title: "Photo library restricted", message: "Photo library acces is restriced and can't be accessed", preferredStyle: .alert)
@@ -252,8 +240,6 @@ let animate = Title()
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
-
-    
     // func to add photos
     //=> PhotoLibrary acces and allow editing
     // Sources : https://www.youtube.com/watch?v=soj3gqW9r4Y
@@ -420,7 +406,6 @@ let animate = Title()
         didSet {
         }
     }
-    
     //Buttons for each layout 1 / 2 / 3
     @IBAction func Button1(_ sender: UIButton) {
         select = .selected1 // Layout1
@@ -432,7 +417,6 @@ let animate = Title()
         topRightView.isHidden = false
         bottomLeftView.isHidden = false
         bottomRightView.isHidden = false
-        
     }
     @IBAction func Button2(_ sender: UIButton) {
         select = .selected2 // Layout2

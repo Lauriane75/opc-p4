@@ -7,9 +7,8 @@
 //
 
 import UIKit
-
+// Animation of the app title Instagrid label
 class Title {
-    
     func animateAppName(label: UILabel) {
         label.text = ""
         let appName = "Instagrid"
