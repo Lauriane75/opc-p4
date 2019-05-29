@@ -40,10 +40,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var instagridLabel: UILabel!
 
     private var lastImageViewTapped: UIImageView?
+
     
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let animate = Title()
@@ -67,8 +66,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         animate.animateAppName(label: self.instagridLabel)
     }
     
-    
-    
+
     // Changes orientation screen display
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: {
@@ -125,7 +123,7 @@ let animate = Title()
             }
         }
     }
-    
+ 
     // Func to check each image view
     func checkSelected1() -> Bool {
         return topRightImageView.image != nil &&
@@ -141,15 +139,17 @@ let animate = Title()
             bottomLeftImageView.image != nil &&
             bottomRightImageView.image != nil
     }
-    
+    /*
    // Alert if an image is missing in the grid before saving
     fileprivate func missingImageAlert() {
         let imageAlert = UIAlertController(title: "⚠️ You must complete the grid with missing images to share it!", message: "", preferredStyle: .alert)
         imageAlert.addAction(UIAlertAction(title: "Got it 👍", style: .default))
         present(imageAlert, animated: true)
     }
+ */
     
     @objc func handleGesture() {
+        let alert = AlertMessage()
         swipeAnimation()
         var finalImage: UIImage? = nil
         
@@ -158,7 +158,7 @@ let animate = Title()
             if checkSelected1() {
                 finalImage = mergeImages(topLeftImage:topImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
             } else {
-                missingImageAlert()
+                alert.missingImageAlert(vc: self)
                 return
             }
             break
@@ -166,7 +166,7 @@ let animate = Title()
             if checkSelected2() {
                 finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomImageView.image, bottomRightImage: bottomRightImageView.image)
             } else {
-                missingImageAlert()
+                alert.missingImageAlert(vc: self)
                 return
             }
             break
@@ -174,7 +174,7 @@ let animate = Title()
             if checkSelected3() {
                 finalImage = mergeImages(topLeftImage: topLeftImageView.image, topRightImage: topRightImageView.image, bottomLeftImage: bottomLeftImageView.image, bottomRightImage: bottomRightImageView.image)
             } else {
-                missingImageAlert()
+                alert.missingImageAlert(vc: self)
                 return
             }
             break
@@ -244,6 +244,7 @@ let animate = Title()
         alert.addAction(cancelAction)
         self.present(alert, animated: true)
     }
+   
     // To pick of media
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.editedImage] as? UIImage {
@@ -257,6 +258,7 @@ let animate = Title()
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }
+
     
     // func to add photos
     //=> PhotoLibrary acces and allow editing
