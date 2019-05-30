@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina3_5" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -23,7 +23,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Instagrid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="arrow-top" translatesAutoresizingMaskIntoConstraints="NO" id="jLx-Nl-TyP">
@@ -66,7 +66,7 @@
                                 </variation>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Layout 1" translatesAutoresizingMaskIntoConstraints="NO" id="ufU-ga-Dbh">
-                                <rect key="frame" x="25" y="442.5" width="80" height="27.5"/>
+                                <rect key="frame" x="25" y="442.5" width="80" height="115.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ufU-ga-Dbh" secondAttribute="height" multiplier="1:1" id="tXZ-mD-UOV"/>
                                 </constraints>
@@ -82,16 +82,16 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzl-uH-ItE" userLabel="Layout1Button">
-                                <rect key="frame" x="25" y="442.5" width="80" height="27.5"/>
+                                <rect key="frame" x="25" y="442.5" width="80" height="115.5"/>
                                 <connections>
                                     <action selector="Button1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="niI-zv-E3Q"/>
                                 </connections>
                             </button>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Selected" translatesAutoresizingMaskIntoConstraints="NO" id="9gX-FI-ifQ" userLabel="Selected-1">
-                                <rect key="frame" x="25" y="442.5" width="80" height="27.5"/>
+                                <rect key="frame" x="25" y="442.5" width="80" height="115.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Layout 2" translatesAutoresizingMaskIntoConstraints="NO" id="9oZ-xp-Dkh">
-                                <rect key="frame" x="120" y="442.5" width="80" height="27.5"/>
+                                <rect key="frame" x="120" y="442.5" width="80" height="115.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="9oZ-xp-Dkh" secondAttribute="height" multiplier="1:1" id="gYs-r4-STi"/>
                                 </constraints>
@@ -107,16 +107,16 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chv-y4-3GF" userLabel="Layout2Button">
-                                <rect key="frame" x="120" y="442.5" width="80" height="27.5"/>
+                                <rect key="frame" x="120" y="442.5" width="80" height="115.5"/>
                                 <connections>
                                     <action selector="Button2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bjS-Wq-CDf"/>
                                 </connections>
                             </button>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Selected" translatesAutoresizingMaskIntoConstraints="NO" id="wfh-mm-mt4" userLabel="Selected-2">
-                                <rect key="frame" x="120" y="442.5" width="80" height="27.5"/>
+                                <rect key="frame" x="120" y="442.5" width="80" height="115.5"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Layout 3" translatesAutoresizingMaskIntoConstraints="NO" id="zcC-zO-QNi">
-                                <rect key="frame" x="215" y="442.5" width="80" height="27.5"/>
+                                <rect key="frame" x="215" y="442.5" width="80" height="115.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zcC-zO-QNi" secondAttribute="height" multiplier="1:1" id="KIF-zm-Lbx"/>
                                 </constraints>
@@ -132,13 +132,13 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuE-hO-aEK" userLabel="Layout3Button">
-                                <rect key="frame" x="215" y="442.5" width="80" height="27.5"/>
+                                <rect key="frame" x="215" y="442.5" width="80" height="115.5"/>
                                 <connections>
                                     <action selector="Button3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Noy-ab-wO3"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Selected" translatesAutoresizingMaskIntoConstraints="NO" id="hqP-QJ-0T7" userLabel="Selected-3">
-                                <rect key="frame" x="215" y="442.5" width="80" height="27.5"/>
+                                <rect key="frame" x="215" y="442.5" width="80" height="115.5"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6cV-5K-BvG" userLabel="Vertical Stack View">
                                 <rect key="frame" x="50" y="203" width="220" height="220"/>
@@ -1222,10 +1222,6 @@
                                 <exclude reference="iru-RY-IJB"/>
                                 <exclude reference="jvZ-cx-a2D"/>
                                 <exclude reference="rr1-Za-IEk"/>
-                                <exclude reference="6u4-lO-3Yj"/>
-                                <exclude reference="RxZ-rm-78a"/>
-                                <exclude reference="c1j-ks-9W5"/>
-                                <exclude reference="mBY-dN-6kt"/>
                                 <exclude reference="3nR-a0-08x"/>
                                 <exclude reference="5pI-XR-lp2"/>
                                 <exclude reference="JVH-Mr-gNe"/>
@@ -1233,6 +1229,10 @@
                                 <exclude reference="R9f-wC-gJ0"/>
                                 <exclude reference="aaN-Oc-uc2"/>
                                 <exclude reference="jEC-Lf-lXc"/>
+                                <exclude reference="6u4-lO-3Yj"/>
+                                <exclude reference="RxZ-rm-78a"/>
+                                <exclude reference="c1j-ks-9W5"/>
+                                <exclude reference="mBY-dN-6kt"/>
                                 <exclude reference="5Gj-Yi-kxK"/>
                                 <exclude reference="LJ1-3H-qrl"/>
                                 <exclude reference="MYW-K8-7LZ"/>
@@ -1276,11 +1276,6 @@
                                 <exclude reference="FQ8-nr-01N"/>
                                 <include reference="IVJ-om-ItM"/>
                                 <include reference="iru-RY-IJB"/>
-                                <include reference="6u4-lO-3Yj"/>
-                                <exclude reference="7au-Km-WBP"/>
-                                <include reference="RxZ-rm-78a"/>
-                                <exclude reference="c1j-ks-9W5"/>
-                                <exclude reference="mBY-dN-6kt"/>
                                 <include reference="3nR-a0-08x"/>
                                 <include reference="5pI-XR-lp2"/>
                                 <include reference="JVH-Mr-gNe"/>
@@ -1292,6 +1287,11 @@
                                 <include reference="aaN-Oc-uc2"/>
                                 <exclude reference="dfj-Le-8R8"/>
                                 <include reference="jEC-Lf-lXc"/>
+                                <include reference="6u4-lO-3Yj"/>
+                                <exclude reference="7au-Km-WBP"/>
+                                <include reference="RxZ-rm-78a"/>
+                                <exclude reference="c1j-ks-9W5"/>
+                                <exclude reference="mBY-dN-6kt"/>
                                 <exclude reference="5Gj-Yi-kxK"/>
                                 <exclude reference="9Ou-ZM-w9o"/>
                                 <include reference="LJ1-3H-qrl"/>
@@ -1394,7 +1394,6 @@
                         <outlet property="topLeftView" destination="Tk6-c9-Q0a" id="fA9-XJ-hLD"/>
                         <outlet property="topRightImageView" destination="UuF-0h-FPm" id="dth-nR-iXL"/>
                         <outlet property="topRightView" destination="Q4H-1X-cTH" id="6rI-hm-AZq"/>
-                        <outlet property="verticalStackView" destination="6cV-5K-BvG" id="7Ml-k2-D0S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

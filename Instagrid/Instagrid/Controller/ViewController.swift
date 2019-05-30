@@ -35,8 +35,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var selected1: UIImageView!
     @IBOutlet weak var selected2: UIImageView!
     @IBOutlet weak var selected3: UIImageView!
-    // vertical stack view
-    @IBOutlet weak var verticalStackView: UIStackView!
+    // Instagrid Label
     @IBOutlet weak var instagridLabel: UILabel!
 
     private var lastImageViewTapped: UIImageView?
@@ -86,7 +85,7 @@ let animate = Title()
         })
     }
     
-    // To swipe the verticalStackView
+    // To swipe the verticalStackView (the swipeView)
     fileprivate func swipeAnimation() {
         let animation = Animation()
         // swipe up portrait mode animation
